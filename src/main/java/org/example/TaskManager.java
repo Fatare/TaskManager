@@ -47,12 +47,13 @@ public class TaskManager {
                 case 2:
                     // TODO: zadanie domowe
 
-                    _repository.viewTasks();
+                    _repository.getTasks();
                     break;
                 case 3:
                     // TODO: zadanie domowe
                     _repository.viewTasks();
-                    _repository.markTaskAsComplete();
+                    int taskId = _input.getTaskId();
+                    _repository.markTaskAsComplete(taskId);
                     break;
                 case 4:
                     // TODO: zadanie domowe

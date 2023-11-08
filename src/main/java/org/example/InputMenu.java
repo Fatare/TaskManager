@@ -79,6 +79,13 @@ public class InputMenu {
         return priority;
     }
 
+    public int getTaskId(){
+        Scanner reader = new Scanner(System.in);
+
+        System.out.print("Enter ID of task you want to chace to complete: ");
+        return reader.nextInt();
+
+    }
     private Date parseDate(String dateStr) {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
