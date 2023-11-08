@@ -1,5 +1,7 @@
 package org.example;
 
 public enum StatusEnum {
-    ToDo, InProgress, Completed
+    ToDo,
+    InProgress,
+    Completed
 }
