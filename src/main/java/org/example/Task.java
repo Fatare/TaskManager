@@ -1,34 +1,70 @@
 package org.example;
 
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
 public class Task {
-    public int uniqueID;
-    public String description;
-    public StatusEnum status;
-    public Priority prio;
-    public Date deadline;
-    public String category;
+    public final static SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Task(int uniqueID, String description, StatusEnum status) {
-        this.uniqueID = uniqueID;
+    private int uniqueID;
+    private String description;
+    private StatusEnum status;
+    private PriorityEnum priority;
+    private Date deadline;
+    private String category;
+
+
+    public Task(String description, StatusEnum status, PriorityEnum priority, Date deadline, String category) {
         this.description = description;
+        this.status = status;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "id: " + uniqueID + " Priority: " + priority + " Deadline: "+ DateFormat.format(deadline) +" description: " + description + " status: " + status;
+    }
+
+    public int getUniqueID() {
+        return uniqueID;
+    }
+
+    public void setUniqueID(int uniqueID) {
+        this.uniqueID = uniqueID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
-    public Priority getPriority(){
-        return prio;
-    }
-    public void setPriority (Priority prio){
-        this.prio = prio;
+    public PriorityEnum getPriority() {
+        return priority;
     }
 
-    public Date getDeadline(){
+    public void setPriority(PriorityEnum priority) {
+        this.priority = priority;
+    }
+
+    public Date getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(Date deadline){
+    public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
 
@@ -39,16 +75,4 @@ public class Task {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    enum Priority {
-        High, Mid, Low
-    }
-
-    @Override
-    public String toString() {
-        return "id: " + uniqueID + " Priority: " + prio + " Deadline: "+ deadline +" description: " + description + " status: " + status;
-    }
-
-
 }
-
