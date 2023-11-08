@@ -1,9 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class TaskManager {
     // Class (static) variables.
     // First the public class variables,
@@ -13,22 +9,12 @@ public class TaskManager {
     // Instance variables.
     // Methods
 
-    private static String menuOptionsText =
-            "Task Manager Menu:\n" +
-                    "1. Add Task\n" +
-                    "2. View Tasks\n" +
-                    "3. Mark Task as Complete\n" +
-                    "4. Remove Completed tasks.\n" +
-                    "5. Exit";
-
     // Access to tasks
     private final TaskRepository _repository = new TaskRepository();
     // Class for gathering input and displaying choices
     private final InputMenu _input = new InputMenu();
 
     public void run() {
-
-        List<Task> tasks = new ArrayList<>();
         while (true) {
             int choice = _input.getMenuOption();
             switch (choice) {
@@ -39,25 +25,29 @@ public class TaskManager {
                     var category = _input.getCategory();
                     var deadline = _input.getDeadline();
 
-                    // create new task based on input
-                    Task task = new Task(description,StatusEnum.ToDo, priority, deadline, category);
-                    // add new task using repository
-                    _repository.addTask(task);
+                    var id = _repository.addTask(description, StatusEnum.ToDo, priority, deadline, category);
+                    System.out.println("Added task with id: " + id);
                     break;
                 case 2:
                     // TODO: zadanie domowe
+                    var tasks = _repository.getTasks();
 
-                    _repository.getTasks();
+                    if (tasks.isEmpty()) {
+                        System.out.println("No tasks available.");
+                    } else {
+                        tasks.forEach(System.out::println);
+                    }
                     break;
                 case 3:
                     // TODO: zadanie domowe
-                    _repository.viewTasks();
-                    int taskId = _input.getTaskId();
-                    _repository.markTaskAsComplete(taskId);
+                    var taskId = _input.getTaskId();
+                    var taskMarkedAsCompleted = _repository.markTaskAsComplete(taskId);
+                    System.out.println(taskMarkedAsCompleted ? "Updated status." : "Task not found or already compelted.");
                     break;
                 case 4:
                     // TODO: zadanie domowe
-                    _repository.removeCompletedTasks();
+                    var anyRemoved = _repository.removeCompletedTasks();
+                    System.out.println(anyRemoved ? "Removed completed tasks." : "No tasks to remove.");
                     break;
                 case 5:
                     System.exit(0);

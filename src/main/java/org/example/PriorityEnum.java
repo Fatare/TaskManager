@@ -1,5 +1,7 @@
 package org.example;
 
 public enum PriorityEnum {
-    High, Mid, Low
+    High,
+    Mid,
+    Low
 }

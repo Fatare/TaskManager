@@ -6,14 +6,14 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class InputMenu {
-
-    private static String menuOptionsText =
-            "Task Manager Menu:\n" +
-                    "1. Add Task\n" +
-                    "2. View Tasks\n" +
-                    "3. Mark Task as Complete\n" +
-                    "4. Remove Completed tasks.\n" +
-                    "5. Exit";
+    private static final String menuOptionsText =
+            """
+                Task Manager Menu:
+                1. Add Task
+                2. View Tasks
+                3. Mark Task as Complete
+                4. Remove Completed tasks.
+                5. Exit""";
 
     private final Scanner reader = new Scanner(System.in);
 
@@ -61,7 +61,7 @@ public class InputMenu {
     }
 
     // get input choice for priority
-    public PriorityEnum getPriority(){
+    public PriorityEnum getPriority() {
         System.out.println("Choose priority:");
         System.out.println("1. HIGH");
         System.out.println("2. MEDIUM");
@@ -79,13 +79,11 @@ public class InputMenu {
         return priority;
     }
 
-    public int getTaskId(){
-        Scanner reader = new Scanner(System.in);
-
-        System.out.print("Enter ID of task you want to chace to complete: ");
+    public int getTaskId() {
+        System.out.print("Enter ID of task you want to change to completed: ");
         return reader.nextInt();
-
     }
+
     private Date parseDate(String dateStr) {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

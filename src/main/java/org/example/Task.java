@@ -1,7 +1,6 @@
 package org.example;
 
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
 import java.util.Date;
 
 public class Task {
@@ -14,14 +13,13 @@ public class Task {
     private Date deadline;
     private String category;
 
-
-    public Task( String description, StatusEnum status, PriorityEnum priority, Date deadline, String category) {
+    public Task(int uniqueID, String description, StatusEnum status, PriorityEnum priority, Date deadline, String category) {
+        this.uniqueID = uniqueID;
         this.description = description;
         this.status = status;
         this.priority = priority;
         this.deadline = deadline;
         this.category = category;
-        //this.uniqueID = uniqueID;
     }
 
     @Override
@@ -36,8 +34,6 @@ public class Task {
     public void setUniqueID(int uniqueID) {
         this.uniqueID = uniqueID;
     }
-
-
 
     public String getDescription() {
         return description;
